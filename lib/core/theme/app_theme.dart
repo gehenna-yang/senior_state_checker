@@ -32,7 +32,7 @@ class AppTheme {
         onSecondary: Colors.black,
       ),
       scaffoldBackgroundColor: Colors.black,
-      cardTheme: const CardTheme(
+      cardTheme: const CardThemeData(
         color: Color(0xFF1E1E1E),
         elevation: 0,
         shape: RoundedRectangleBorder(

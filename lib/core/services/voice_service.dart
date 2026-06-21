@@ -12,8 +12,8 @@ class VoiceService extends _$VoiceService {
   FutureOr<bool> build() async {
     _speech = SpeechToText();
     _isAvailable = await _speech.initialize(
-      onStatus: (status) => print('음성 인식 상태: $status'),
-      onError: (error) => print('음성 인식 에러: $error'),
+      onStatus: (status) {},
+      onError: (error) {},
     );
     return _isAvailable;
   }

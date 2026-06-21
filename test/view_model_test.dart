@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:senior_check_state/domain/entities/check_item.dart';
 import 'package:senior_check_state/ui/home/home_view_model.dart';
 import 'package:senior_check_state/ui/search/search_view_model.dart';
-import 'package:senior_check_state/data/repositories/mock_check_repository.dart';
 
 void main() {
   group('홈 및 통계 뷰모델 단위 테스트', () {
