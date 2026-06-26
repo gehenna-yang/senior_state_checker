@@ -80,7 +80,10 @@ class VoiceMainBody extends ConsumerWidget {
                 notifier.updateStatus(VoiceStatus.listening);
                 await sttService.listen(
                   onResult: (text) => notifier.setRecognizedText(text),
-                  onDone: () => notifier.updateStatus(VoiceStatus.success),
+                  onDone: () async {
+                    await sttService.stop();
+                    notifier.updateStatus(VoiceStatus.success);
+                  },
                   onError: (error) => notifier.setError(error),
                 );
               }

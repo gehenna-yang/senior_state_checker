@@ -48,7 +48,20 @@ class STTService {
     required Function(String) onError,
   }) async {
     try {
-      final isAvailable = await _speech.initialize();
+      final isAvailable = await _speech.initialize(
+        onStatus: (status) {
+          dprint('음성 인식 상태: $status');
+          switch(status){
+            case 'listening':
+              break;
+            case 'notListening':
+              break;
+            case 'done':
+              break;
+          }
+        },
+        onError: (message) => dprint(message),
+      );
       if (!isAvailable) {
         onError('현재 기기에서 음성 인식을 사용할 수 없습니다.');
         return;
@@ -57,16 +70,18 @@ class STTService {
       await _speech.listen(
         onResult: (result) {
           dprint('## listen result: $result');
-          if (result.finalResult) {
+          // if (result.finalResult) {
+          if (result.recognizedWords.isNotEmpty && _speech.isListening) {
             onResult(result.recognizedWords);
             onDone();
           }
         },
         listenOptions: SpeechListenOptions(
           localeId: 'ko_KR',
-          listenFor: const Duration(seconds: 10),
-          pauseFor: const Duration(seconds: 3),
+          listenFor: const Duration(seconds: 60),
+          pauseFor: const Duration(seconds: 20),
           cancelOnError: true,
+          listenMode: ListenMode.dictation
         ),
       );
     } on TimeoutException {
@@ -90,6 +105,5 @@ class STTService {
 @riverpod
 STTService sttService(SttServiceRef ref) {
   final service = STTService();
-  ref.onDispose(() => service.dispose());
   return service;
 }
