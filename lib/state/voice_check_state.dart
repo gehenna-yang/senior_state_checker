@@ -2,6 +2,7 @@
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:senior_check_state/ui/utils/dprint.dart';
 
 part 'voice_check_state.freezed.dart';
 part 'voice_check_state.g.dart';
@@ -55,11 +56,13 @@ class VoiceCheckNotifier extends _$VoiceCheckNotifier {
 
   /// 인식된 텍스트를 저장합니다.
   void setRecognizedText(String text) {
+    dprint('## recognized text : $text');
     state = state.copyWith(recognizedText: text);
   }
 
   /// 에러 발생 시 메시지와 함께 상태를 변경합니다.
   void setError(String message) {
+    dprint('## recognized error : $message');
     state = state.copyWith(
       status: VoiceStatus.failure,
       errorMessage: message,

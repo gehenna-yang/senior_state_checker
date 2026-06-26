@@ -1,5 +1,6 @@
 // lib/core/services/stt_service.dart
 
+import 'package:senior_check_state/ui/utils/dprint.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'dart:async';
@@ -55,15 +56,18 @@ class STTService {
 
       await _speech.listen(
         onResult: (result) {
+          dprint('## listen result: $result');
           if (result.finalResult) {
             onResult(result.recognizedWords);
             onDone();
           }
         },
-        localeId: 'ko_KR', // 시니어 사용자를 위한 한국어 고정
-        listenFor: const Duration(seconds: 10), // 충분한 대기 시간 제공
-        pauseFor: const Duration(seconds: 3),   // 말이 끊겼을 때의 대기 시간
-        cancelOnError: true,
+        listenOptions: SpeechListenOptions(
+          localeId: 'ko_KR',
+          listenFor: const Duration(seconds: 10),
+          pauseFor: const Duration(seconds: 3),
+          cancelOnError: true,
+        ),
       );
     } on TimeoutException {
       onError('말씀이 없으셔서 인식을 종료했습니다.');

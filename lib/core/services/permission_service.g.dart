@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'voice_check_state.dart';
+part of 'permission_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$voiceCheckNotifierHash() =>
-    r'e027626d0890908449522c769c77fa41830ce209';
+String _$permissionServiceHash() => r'19b92322798ea7fd375e96ef01c7cc2626892ad5';
 
-/// See also [VoiceCheckNotifier].
-@ProviderFor(VoiceCheckNotifier)
-final voiceCheckNotifierProvider =
-    AutoDisposeNotifierProvider<VoiceCheckNotifier, VoiceCheckState>.internal(
-  VoiceCheckNotifier.new,
-  name: r'voiceCheckNotifierProvider',
+/// See also [permissionService].
+@ProviderFor(permissionService)
+final permissionServiceProvider =
+    AutoDisposeProvider<PermissionService>.internal(
+  permissionService,
+  name: r'permissionServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$voiceCheckNotifierHash,
+      : _$permissionServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$VoiceCheckNotifier = AutoDisposeNotifier<VoiceCheckState>;
+typedef PermissionServiceRef = AutoDisposeProviderRef<PermissionService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

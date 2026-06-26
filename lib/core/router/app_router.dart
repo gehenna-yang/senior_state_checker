@@ -7,6 +7,7 @@ import '../../ui/screens/home/home_screen.dart';
 import '../../ui/screens/search/search_screen.dart'; // HistoryScreen으로 활용
 import '../../ui/screens/profile/profile_screen.dart'; // SettingsScreen으로 활용
 import '../../ui/screens/home/add_edit_item_screen.dart'; // ManagementScreen으로 활용
+import '../../ui/screens/splash/splash_screen.dart';
 
 part 'app_router.g.dart';
 
@@ -16,9 +17,17 @@ GoRouter appRouter(AppRouterRef ref) {
   final shellNavigatorKey = GlobalKey<NavigatorState>();
 
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: '/splash',
     navigatorKey: rootNavigatorKey,
     routes: [
+      // 1. 스플래시 화면 (햄버거 메뉴가 없는 독립적 화면)
+      GoRoute(
+        path: '/splash',
+        name: 'splash',
+        builder: (context, state) => const SplashScreen(),
+      ),
+
+      // 2. 메인 레이아웃 적용 화면들 (햄버거 메뉴 포함)
       ShellRoute(
         navigatorKey: shellNavigatorKey,
         builder: (context, state, child) {
