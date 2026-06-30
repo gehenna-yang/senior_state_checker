@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../state/voice_check_state.dart';
 import '../../../core/services/stt_service.dart';
 import '../../widgets/mic_wave_animation.dart';
+import '../../widgets/item_check_dialog.dart';
 
 /// 앱의 메인 홈 스크린
 /// 설정값에 따라 보이스 중심 UI 또는 수동 입력 UI를 렌더링합니다.
@@ -79,10 +80,29 @@ class VoiceMainBody extends ConsumerWidget {
                 notifier.reset();
                 notifier.updateStatus(VoiceStatus.listening);
                 await sttService.listen(
-                  onResult: (text) => notifier.setRecognizedText(text),
+                  onResult: (text) async {
+                    // Feature 4: 보이스 결과 처리 로직 실행
+                    final result = await notifier.processVoiceResult(text);
+                    
+                    if (!result.isSuccess && context.mounted) {
+                      // 일치하는 항목이 없는 경우 다이얼로그 표시
+                      showDialog(
+                        context: context,
+                        builder: (context) => ItemCheckDialog(recognizedText: text),
+                      );
+                    } else if (result.isSuccess && context.mounted) {
+                      // 성공 시 간단한 안내
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('${result.matchedItem} 기록을 완료했습니다!', style: const TextStyle(fontSize: 18)),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    }
+                  },
                   onDone: () async {
                     await sttService.stop();
-                    notifier.updateStatus(VoiceStatus.success);
+                    // 성공 처리는 processVoiceResult 내에서 수행됨
                   },
                   onError: (error) => notifier.setError(error),
                 );

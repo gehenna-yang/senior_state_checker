@@ -1,4 +1,4 @@
-# Feature Request: [보이스 메인 설정]
+# Feature Request: [스플래시 화면 구성 & 퍼미션 요청 구현]
 
 ## 1. Objective (목표)
 * 앱 구동시 `splash_screen`에서 보이스 관련 권한을 요청하기 위함

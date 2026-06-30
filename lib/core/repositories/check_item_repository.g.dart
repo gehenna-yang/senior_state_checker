@@ -1,27 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'voice_check_state.dart';
+part of 'check_item_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$voiceCheckNotifierHash() =>
-    r'49c46d988eb34679c1e19776b07f5ecd71bf8bbb';
+String _$checkItemRepositoryHash() =>
+    r'dd3ee2197469eb059bd7b7ae849250e4b3f50f62';
 
-/// See also [VoiceCheckNotifier].
-@ProviderFor(VoiceCheckNotifier)
-final voiceCheckNotifierProvider =
-    AutoDisposeNotifierProvider<VoiceCheckNotifier, VoiceCheckState>.internal(
-  VoiceCheckNotifier.new,
-  name: r'voiceCheckNotifierProvider',
+/// See also [checkItemRepository].
+@ProviderFor(checkItemRepository)
+final checkItemRepositoryProvider =
+    AutoDisposeProvider<AbstractCheckItemRepository>.internal(
+  checkItemRepository,
+  name: r'checkItemRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$voiceCheckNotifierHash,
+      : _$checkItemRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$VoiceCheckNotifier = AutoDisposeNotifier<VoiceCheckState>;
+typedef CheckItemRepositoryRef
+    = AutoDisposeProviderRef<AbstractCheckItemRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
